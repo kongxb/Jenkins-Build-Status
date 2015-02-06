@@ -1,7 +1,7 @@
 ##Preview
-![bla](http://f.cl.ly/items/33e0c2a7a7b00cc2e0aa/jenkins_status_failed.png)
+![bla](https://gist.github.com/joepadmiraal/33e0c2a7a7b00cc2e0aa/raw/82a52dce365e9c57a81f81ec294302a33e69e3c8/?raw=true)
 
-https://gist.github.com/joepadmiraal/33e0c2a7a7b00cc2e0aa/raw/82a52dce365e9c57a81f81ec294302a33e69e3c8/
+
 
 ## Description
 
