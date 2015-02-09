@@ -4,9 +4,11 @@ See images below.
 
 ## Description
 
-Simple [Dashing](http://shopify.github.com/dashing) widget (and associated job) to display the current build status of a Jenkins server. When all jobs are fine a blue background with a thumbs-up icons is shown. When one or more jobs are in a failed state, they are listed on a red background.
+Simple [Dashing](http://shopify.github.com/dashing) widget (and associated job) to display the current build status of a Jenkins server. When all jobs are fine a blue background with a thumbs-up icons is shown. When one or more jobs are in a failed state, they are listed on a red background. If culprits are available the user which has broken the build will also be shown. When the Speech Synthesis API is available on the browser it will say one of the predefined texts out loud every 5 minutes. See jenkins_build_status.coffee for the texts and the timeBetweenSounds parameter.
 
 Calls are made to the [Jenkins API](https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API) to retrieve the build status and culprits if they are available.
+
+Please leave a comment below if you are using this widget :-)
 
 Installing the widget
 ===============
