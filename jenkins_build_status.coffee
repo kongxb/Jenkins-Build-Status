@@ -9,7 +9,8 @@ class Dashing.JenkinsBuildStatus extends Dashing.Widget
       $(@node).find('div.build-succeeded').hide()
       $(@node).css("background-color", "red")
 
-      @playSoundForUser data.failedJobs[0].value if Date.now() - @lastPlayed > @timeBetweenSounds
+      if 'speechSynthesis' of window
+        @playSoundForUser data.failedJobs[0].value if Date.now() - @lastPlayed > @timeBetweenSounds
     else
       $(@node).find('div.build-failed').hide()
       $(@node).find('div.build-succeeded').show()
@@ -17,15 +18,11 @@ class Dashing.JenkinsBuildStatus extends Dashing.Widget
 
   playSoundForUser: (user) ->
     @lastPlayed = Date.now()
-    texts = ["#{user} heeft de bild kapot gemaakt.", "De bild is gebroken door #{user}", "#{user} is een toffe peer, maar kan niet programmeren", "Oeps, het is weer zo ver.", "#{user} bel maar alvast naar huis dat je later komt.", "#{user} pas op. Juliet gaat je slaan."]
+    texts = ["#{user} has broken the build.", "The build is broken by #{user}", "#{user} is great, but lacks some programming skills", "Oops, I did it again."]
     textNr = Math.floor((Math.random() * texts.length));
-
     @playSound texts[textNr]
 
   playSound: (text) ->
     msg = new SpeechSynthesisUtterance(text)
-    voiceFilter = (voice) ->
-      return voice.lang == 'nl-NL'
-
-    msg.voice = speechSynthesis.getVoices().filter(voiceFilter)[0]
+    msg.voice = speechSynthesis.getVoices()[0]
     speechSynthesis.speak msg
