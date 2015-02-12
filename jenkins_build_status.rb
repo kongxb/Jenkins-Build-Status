@@ -19,7 +19,7 @@ SCHEDULER.every '10s' do
 
     if job["color"] != "blue" && job["color"] != "blue_anime"
 
-      jobStatus = getFromJenkins("job/" + job["name"] + "/lastSuccessfulBuild/api/json")
+      jobStatus = getFromJenkins("job/" + job["name"] + "/lastFailedBuild/api/json")
       culprits = jobStatus["culprits"]
 
       culpritName = getNameFromCulprits(culprits)
