@@ -7,28 +7,28 @@ JENKINS_AUTH = {
 
 SCHEDULER.every '10s' do
 
-  json = getFromJenkins("api/json?pretty=true")
+  json = getFromJenkins('api/json?pretty=true')
 
   failedJobs = Array.new
   succeededJobs = Array.new
-  array = json["jobs"]
+  array = json['jobs']
   array.each {
     |job|
-    next if job["color"] == "disabled"
-    next if job["color"] == "notbuilt"
 
-    if job["color"] != "blue" && job["color"] != "blue_anime"
+    next if job['color'] == 'disabled'
+    next if job['color'] == 'notbuilt'
+    next if job['color'] == 'blue'
+    next if job['color'] == 'blue_anime'
 
-      jobStatus = getFromJenkins("job/" + job["name"] + "/lastFailedBuild/api/json")
-      culprits = jobStatus["culprits"]
+    jobStatus = getFromJenkins(testJson['url'] + '/lastFailedBuild/api/json')
+    culprits = jobStatus['culprits']
 
-      culpritName = getNameFromCulprits(culprits)
-      if culpritName != ""
-      	 culpritName = culpritName.partition('<').first
-      end
-
-      failedJobs.push({ label: job["name"], value: culpritName})
+    culpritName = getNameFromCulprits(culprits)
+    if culpritName != ''
+    	 culpritName = culpritName.partition('<').first
     end
+
+    failedJobs.push({ label: job['name'], value: culpritName})
   }
 
   failed = failedJobs.size > 0
@@ -53,7 +53,7 @@ end
 def getNameFromCulprits(culprits)
   culprits.each {
     |culprit|
-    return culprit["fullName"]
+    return culprit['fullName']
   }
-  return ""
+  return ''
 end
