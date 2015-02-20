@@ -7,7 +7,7 @@ JENKINS_AUTH = {
 
 SCHEDULER.every '10s' do
 
-  json = getFromJenkins('api/json?pretty=true')
+  json = getFromJenkins(JENKINS_URI + 'api/json?pretty=true')
 
   failedJobs = Array.new
   succeededJobs = Array.new
@@ -20,12 +20,18 @@ SCHEDULER.every '10s' do
     next if job['color'] == 'blue'
     next if job['color'] == 'blue_anime'
 
-    jobStatus = getFromJenkins(testJson['url'] + '/lastFailedBuild/api/json')
+    jobStatus = '';
+    if job['color'] == 'yellow' || job['color'] == 'yellow_anime'
+      jobStatus = getFromJenkins(job['url'] + 'lastUnstableBuild/api/json')
+    else
+      jobStatus = getFromJenkins(job['url'] + 'lastFailedBuild/api/json')
+    end
+
     culprits = jobStatus['culprits']
 
     culpritName = getNameFromCulprits(culprits)
     if culpritName != ''
-    	 culpritName = culpritName.partition('<').first
+       culpritName = culpritName.partition('<').first
     end
 
     failedJobs.push({ label: job['name'], value: culpritName})
@@ -38,7 +44,7 @@ end
 
 def getFromJenkins(path)
 
-  uri = URI.parse(JENKINS_URI + path)
+  uri = URI.parse(path)
   http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Get.new(uri.request_uri)
   if JENKINS_AUTH['name']
