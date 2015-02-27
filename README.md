@@ -12,22 +12,22 @@ Please leave a comment below if you are using this widget :-)
 
 Installing the widget
 ===============
-Place the following files in your `widgets/jenkinsbuildstatus` folder:  
-  - `jenkinsbuildstatus.coffee`
-  - `jenkinsbuildstatus.html`
-  - `jenkinsbuildstatus.scss`
+Create the folder `widgets/jenkins_build_status` and put these files in it:  
+  - `jenkins_build_status.coffee`
+  - `jenkins_build_status.html`
+  - `jenkins_build_status.scss`
 
 Place the following file in your `jobs/` folder:
-  - `jenkinsbuildstatus.rb`
+  - `jenkins_build_status.rb`
 
 ## Configuring the widget for use with your Jenkins instance
 There are a few parameters that must be set up before using this widget with your Jenkins instance.
 
-In the **jenkinsbuildstatus.rb** file, modify the following parameters according to your needs:
+In the **jenkins_build_status.rb** file, modify the following parameters according to your needs:
 
-|Parameter|Meaning | 
-|:------------- |:------------------|
-| `JENKINS_URI` | Jenkins base URL  | 
+|Parameter       | Meaning                  | 
+|:-------------- |:-------------------------|
+| `JENKINS_URI`  | Jenkins base URL         | 
 | `JENKINS_AUTH` | Jenkins user credentials |
 
 
