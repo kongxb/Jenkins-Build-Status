@@ -1,3 +1,6 @@
+require 'httpclient'
+require 'json'
+
 JENKINS_URI = "http://localhost:8080/"
 
 JENKINS_AUTH = {
@@ -23,6 +26,8 @@ SCHEDULER.every '10s' do
     jobStatus = '';
     if job['color'] == 'yellow' || job['color'] == 'yellow_anime'
       jobStatus = getFromJenkins(job['url'] + 'lastUnstableBuild/api/json')
+    elsif job['color'] == 'aborted'
+      jobStatus = getFromJenkins(job['url'] + 'lastUnsuccessfulBuild/api/json')
     else
       jobStatus = getFromJenkins(job['url'] + 'lastFailedBuild/api/json')
     end
