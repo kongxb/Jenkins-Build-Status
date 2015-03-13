@@ -8,10 +8,17 @@ Simple [Dashing](http://shopify.github.com/dashing) widget (and associated job) 
 
 Calls are made to the [Jenkins API](https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API) to retrieve the build status and culprits if they are available.
 
-Please leave a comment below if you are using this widget :-)
+Please leave a comment below or click on the star if you are using this widget :-)
 
 Installing the widget
 ===============
+
+Add httpclient to dashing's gemfile:
+
+    gem 'httpclient', '~> 2.5.3.3'
+
+Run `bundle install`.
+
 Create the folder `widgets/jenkins_build_status` and put these files in it:  
   - `jenkins_build_status.coffee`
   - `jenkins_build_status.html`
