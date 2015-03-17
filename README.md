@@ -13,12 +13,6 @@ Please leave a comment below or click on the star if you are using this widget :
 Installing the widget
 ===============
 
-Add httpclient to dashing's gemfile:
-
-    gem 'httpclient', '~> 2.5.3.3'
-
-Run `bundle install`.
-
 Create the folder `widgets/jenkins_build_status` and put these files in it:  
   - `jenkins_build_status.coffee`
   - `jenkins_build_status.html`

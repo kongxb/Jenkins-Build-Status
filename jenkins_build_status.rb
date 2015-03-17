@@ -1,4 +1,4 @@
-require 'httpclient'
+require 'net/http'
 require 'json'
 
 JENKINS_URI = "http://localhost:8080/"
