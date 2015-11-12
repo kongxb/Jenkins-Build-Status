@@ -26,7 +26,7 @@ SCHEDULER.every '10s' do
     jobStatus = '';
     if job['color'] == 'yellow' || job['color'] == 'yellow_anime'
       jobStatus = getFromJenkins(job['url'] + 'lastUnstableBuild/api/json')
-    elsif job['color'] == 'aborted'
+    elsif job['color'] == 'aborted' || job['color'] == 'aborted_anime'
       jobStatus = getFromJenkins(job['url'] + 'lastUnsuccessfulBuild/api/json')
     else
       jobStatus = getFromJenkins(job['url'] + 'lastFailedBuild/api/json')
